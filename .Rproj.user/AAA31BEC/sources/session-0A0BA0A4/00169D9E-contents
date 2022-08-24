@@ -1,0 +1,26 @@
+# *** rename_coordination_fx ---------
+#' @title Renaming Coordination
+#'
+#' @description Rename, consolidate, or create needed fields from APPS export files in one step
+#'
+#' @details This function allows the user to specify which APPS export fields they want to tidy at once. If the input variable is set to 'TRUE' then the associated function will be applied to the dataframe. Available functions are consolid  
+#'
+#' @export
+
+
+rename_coordination_fx <- function(df, population, commonname, takeaction, speciesvar, production, lifestage){
+  if(population == TRUE){
+    df <- rename_population(df)}
+  if (commonname == TRUE){
+    df <- rename_commonname(df)}
+  if(takeaction == TRUE){
+    df <- rename_takeaction(df)}
+  if(speciesvar == TRUE){
+    df <- create_speciesvar(df)}
+  if(production==TRUE){
+    df <- rename_production(df)}
+  if(lifestage==TRUE){
+    df <- coordinate_lifestage(df)
+  }
+  return(df)
+}
