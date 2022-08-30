@@ -1,6 +1,10 @@
 # NMFSResPermits
 Package for tidying and analyzing NMFS WCR research permit data from the APPS database (https://apps.nmfs.noaa.gov/)
 
+## Documentation
+
+You can visit this [pkgdown site](https://www.google.com](https://dianadishman-noaa.github.io/NMFSResPermits/) to learn more about what this package does.
+
 ## Setup
 To install this package from GitHub:
 
