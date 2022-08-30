@@ -3,7 +3,7 @@ Package for tidying and analyzing NMFS WCR research permit data from the APPS da
 
 ## Documentation
 
-You can visit this [pkgdown site](https://www.google.com](https://dianadishman-noaa.github.io/NMFSResPermits/) to learn more about what this package does.
+Visit the pkgdown site (https://www.google.com](https://dianadishman-noaa.github.io/NMFSResPermits/) to learn more about what this package does.
 
 ## Setup
 To install this package from GitHub:
@@ -14,6 +14,11 @@ devtools::install_github("DianaDishman-NOAA/NMFSResPermits")
 library(NMFSResPermits)
 ```
 
+## Usage
+
+This package is designed specifically to work with data exported from the APPS database (https://apps.nmfs.noaa.gov/) containing data on permits issued by NMFS for scientific research, monitoring, rescue, salvage, collection, harassment, enhancement, propagation, and other activities resulting in take of ESA-listed species within our jurisdiction. Data that comes out of APPS has a very specific structure, and highly specialized utilization. If you want to know more about the data contained in the database please visit the link above, and further resources linked there with information on Federally protected species, permit types, and application instructions. 
+
+You should only be using this package if you first know what APPS data are all about. This package's purpose is to make it easier to do the things you'll commonly want to do to tidy and synthesize APPS data for interpretation.
 
 
 # NOAA README
