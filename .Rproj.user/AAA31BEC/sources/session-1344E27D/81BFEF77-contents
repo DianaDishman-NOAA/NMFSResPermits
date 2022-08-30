@@ -5,7 +5,7 @@
 #'
 #' @details takes a dataframe that already has the CommonName variable and updates the wording FROM the left hand side of the ~ TO the right hand side of the ~
 #'
-#' @param df A dataframe of imported APPS data with an unaltered CommonName column that you want to re-format into print-friendly order
+#' @param df A dataframe of imported APPS data with the CommonName variable that you want to re-format into print-friendly order
 #'
 
 

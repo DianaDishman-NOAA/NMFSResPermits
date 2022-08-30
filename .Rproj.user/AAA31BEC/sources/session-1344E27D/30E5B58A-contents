@@ -1,0 +1,43 @@
+url: https://nmfs-fish-tools.github.io/pkgdownTemplate/
+
+navbar:
+  structure:
+    left:
+    - home
+    - reference
+    - sourcecode
+    - documents
+    - news
+    right: github
+
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+
+    reference:
+      text: Functions
+      icon: far fa-file-code fa-lg
+      href: reference/index.html
+
+    sourcecode:
+      text: Source Code
+      icon: fab fa-github fa-lg
+      href: https://github.com/DianaDishman-NOAA/NMFSResPermits
+
+    documents:
+      text: References
+      icon: fas fa-book fa-lg
+      menu:
+      - text: Background Page
+        href: Article.html
+
+reference:
+- title: Function functions
+  contents:
+  - contains("function")
+
+
+authors:
+  Diana Dishman:
+    href: https://github.com/DianaDishman-NOAA
