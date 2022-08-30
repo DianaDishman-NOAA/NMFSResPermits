@@ -3,7 +3,7 @@ Package for tidying and analyzing NMFS WCR research permit data from the APPS da
 
 ## Documentation
 
-Visit the pkgdown site (https://www.google.com](https://dianadishman-noaa.github.io/NMFSResPermits/) to learn more about what this package does.
+Visit the pkgdown site (https://dianadishman-noaa.github.io/NMFSResPermits/) to learn more about what this package does.
 
 ## Setup
 To install this package from GitHub:
