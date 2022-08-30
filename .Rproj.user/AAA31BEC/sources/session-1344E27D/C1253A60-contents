@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 url: ~
 template:
   bootstrap: 5
 
+=======
+url: ~
+template:
+  bootstrap: 5
+
+>>>>>>> c96d260a00ffd9fd5f275b5a2430185e8a13ec61
