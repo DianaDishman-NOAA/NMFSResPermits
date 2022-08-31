@@ -1,0 +1,6 @@
+
+
+install.packages("devtools") #if needed
+devtools::install_github("DianaDishman-NOAA/NMFSResPermits")
+library(NMFSResPermits)
+
