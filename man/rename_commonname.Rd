@@ -6,6 +6,9 @@
 \usage{
 rename_commonname(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data with an unaltered CommonName column that you want to re-format into print-friendly order}
+}
 \description{
 Modify species common names to reader-friendly format and combine with population name to get ESU or DPS unit name
 }

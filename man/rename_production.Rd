@@ -6,6 +6,9 @@
 \usage{
 rename_production(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data including the Species and Production columns}
+}
 \description{
 Abbreviate production descriptions for pretty printing in tables
 }

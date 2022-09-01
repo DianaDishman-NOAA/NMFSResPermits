@@ -6,6 +6,11 @@
 \usage{
 perc_ESU_DPS(df, abund)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data that includes including the Species, LifeStage, and Production columns, as well as ExpTake and TotalMorts columns totaling all and lethal-only take (see ?create_totalmorts())}
+
+\item{abund}{A dataframe of abundance date for all listed species of interest, organized at matching ESU/DPS (Species), LifeStage, and Production (hatchery vs natural-origin) values, as available for each ESU/DPS. Columns should be labeled 'Species', 'LifeStage', 'Production', and 'abundance' with values for the first three that correspond with valid values in the df dataframe}
+}
 \description{
 Calculate the percent of the ESU or DPS abundance that will be taken or killed by proposed research
 }

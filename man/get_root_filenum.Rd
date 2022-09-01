@@ -6,6 +6,9 @@
 \usage{
 get_root_filenum(file_list)
 }
+\arguments{
+\item{file_list}{A list of permit numbers associated with APPS data, matching the FileNumber column}
+}
 \description{
 Extract the root number from any FileNumber exported from APPS
 }

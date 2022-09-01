@@ -6,6 +6,9 @@
 \usage{
 create_totalactmorts(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS \emph{reporting} data including the TakeAction, ActTake, and ActMort columns}
+}
 \description{
 Create a new column summing the total actual/reported mortalities for each take line
 }

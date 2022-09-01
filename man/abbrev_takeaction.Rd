@@ -6,6 +6,9 @@
 \usage{
 abbrev_takeaction(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data including the Species and TakeAction columns}
+}
 \description{
 Abbreviate take actions to reader-friendly format for tables
 }

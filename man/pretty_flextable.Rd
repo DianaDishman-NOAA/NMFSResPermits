@@ -6,6 +6,11 @@
 \usage{
 pretty_flextable(df, ftname)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data that you want to make into a pretty object for printing in a word document}
+
+\item{ftname}{The name you want to give your pretty table flextable object, to call when you print it}
+}
 \description{
 Takes a tibble, creates pretty, formatted flextable for export into word docs
 }

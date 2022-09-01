@@ -6,6 +6,9 @@
 \usage{
 consolidate_lifestage(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data including the Species and LifeStage columns}
+}
 \description{
 Consolidate detailed life stage categories into generalized juvenile and adult categories
 }

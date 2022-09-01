@@ -6,6 +6,9 @@
 \usage{
 order_table(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data that you want to put in print order, including the Species, LifeStage, and Production columns}
+}
 \description{
 Order a dataframe or table by Species, LifeStage, and Production
 }

@@ -6,6 +6,9 @@
 \usage{
 create_speciesvar(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data including the CommonName and Population columns}
+}
 \description{
 Modify species common names to reader-friendly format and combine with population name to get ESU or DPS unit name
 }

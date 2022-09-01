@@ -6,6 +6,9 @@
 \usage{
 rename_population(df)
 }
+\arguments{
+\item{df}{A dataframe of imported APPS data with an unaltered Population column}
+}
 \description{
 Rename any population that is not currently labeled as its applicable ESU or DPS
 }
