@@ -6,6 +6,7 @@ Author: Diana Dishman
 Maintainer: Diana Dishman <diana.dishman@noaa.gov>
 Description: This package is a collection of functions for processing and summarizing NMFS Research Permitting data stored in the public-facing permit application database APPS (https://apps.nmfs.noaa.gov/)
     Use four spaces when indenting paragraphs within the Description.
+Imports: magrittr, dplyr, stringr, tidyr, scales
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

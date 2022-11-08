@@ -11,7 +11,7 @@
 
 create_totalactmorts <- function(df){
   df <- df %>%
-    mutate(TotActMorts = ifelse(
+    dplyr::mutate(TotActMorts = ifelse(
       TakeAction=='Intentional (Directed) Mortality',
       ActTake + ActMort, ActMort))
   return(df)

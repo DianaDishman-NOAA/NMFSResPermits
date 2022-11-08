@@ -14,6 +14,6 @@ create_speciesvar <- function(df){
   df <- df %>%
     rename_commonname() %>%
     rename_population() %>%
-    mutate(Species = paste(Population, CommonName, sep = " "))
+    dplyr::mutate(Species = paste(Population, CommonName, sep = " "))
   return(df)
 }
