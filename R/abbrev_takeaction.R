@@ -14,7 +14,7 @@
 # ***** for TakeAction based on whatever equalities are listed in the recode() portion.
 abbrev_takeaction <- function(df){
   df <- df %>%
-    mutate(TakeAction= recode(TakeAction,
+    dplyr::mutate(TakeAction= dplyr::recode(TakeAction,
                               "Intentional \\(Directed\\) Mortality" = "IM",
                               "Capture/Handle/Release Fish" = "C/H/R",
                               "Capture/Mark, Tag, Sample Tissue/Release Live Animal" = "C/M, T, ST/R",

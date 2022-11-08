@@ -14,7 +14,7 @@
 # ***** wording FROM the left hand side of the ~ TO the right hand side of the ~
 rename_commonname <- function(df){
   df <- df %>%
-    mutate(CommonName = recode(CommonName,
+    dplyr::mutate(CommonName = dplyr::recode(CommonName,
                                "Salmon, coho" = "coho salmon",
                                "Steelhead" = "steelhead",
                                "Eulachon" = "eulachon",

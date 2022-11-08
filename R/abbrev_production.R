@@ -11,7 +11,7 @@
 
 rename_production <- function(df){
   df <- df %>%
-    mutate(Production = recode(Production,
+    dplyr::mutate(Production = dplyr::recode(Production,
                                "Listed Hatchery Adipose Clip" = "LHAC",
                                "Listed Hatchery Intact Adipose" = "LHIA",
                                "Listed Hatchery, Clipped and Intact" = "LHAC_LHIA",

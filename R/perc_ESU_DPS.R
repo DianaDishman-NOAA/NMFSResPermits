@@ -21,102 +21,102 @@ perc_ESU_DPS <- function(df, abund){
   #Calculate take sums as perc of ESU/DPS using adult abundance only
   #For rockfish and eulachon
   df_by_sp_adults <- df_abund %>%
-    group_by(Species) %>%
-    replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
-    summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
-    mutate(PercESUtake = (ExpTake/abundance)*100) %>%
-    mutate(PercESUkill = (TotalMorts/abundance)*100)
+    dplyr::group_by(Species) %>%
+    tidyr::replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
+    dplyr::summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
+    dplyr::mutate(PercESUtake = (ExpTake/abundance)*100) %>%
+    dplyr::mutate(PercESUkill = (TotalMorts/abundance)*100)
 
   df_sp <- df %>%
-    filter(Species %in% c("Puget Sound/Georgia Basin DPS bocaccio",
+    dplyr::filter(Species %in% c("Puget Sound/Georgia Basin DPS bocaccio",
                           "Puget Sound/Georgia Basin DPS yelloweye rockfish",
                           "Southern DPS eulachon")) %>%
-    left_join(select(df_by_sp_adults, c(Species, abundance, PercESUtake, PercESUkill)),
+    dplyr::left_join(select(df_by_sp_adults, c(Species, abundance, PercESUtake, PercESUkill)),
               by = "Species")
 
   #Calculate take sums as perc of ESU/DPS by species and lifestage
   #For species where you can't distinguish hatchery and natural origin adults
   df_by_sp_ls <- df_abund %>%
-    group_by(Species, LifeStage) %>%
-    replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
-    summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
-    mutate(PercESUtake = (ExpTake/abundance)*100) %>%
-    mutate(PercESUkill = (TotalMorts/abundance)*100) %>%
-    filter(!abundance == 0)
+    dplyr::group_by(Species, LifeStage) %>%
+    tidyr::replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
+    dplyr::summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
+    dplyr::mutate(PercESUtake = (ExpTake/abundance)*100) %>%
+    dplyr::mutate(PercESUkill = (TotalMorts/abundance)*100) %>%
+    dplyr::filter(!abundance == 0)
 
   df_ls_list <- unique(abund[abund$Production == "Listed Hatchery and Natural Origin", "Species"])
 
   df_ls <- df %>%
-    filter(Species %in% unlist(df_ls_list)) %>%
-    filter(LifeStage == "Adult") %>%
-    left_join(select(df_by_sp_ls, c(Species, LifeStage, abundance, PercESUtake, PercESUkill)),
+    dplyr::filter(Species %in% unlist(df_ls_list)) %>%
+    dplyr::filter(LifeStage == "Adult") %>%
+    dplyr::left_join(select(df_by_sp_ls, c(Species, LifeStage, abundance, PercESUtake, PercESUkill)),
               by = c("Species", "LifeStage"))
 
   #Calculate take sums as perc of ESU/DPS by species, lifestage, and hatchery origin
   #For species where you can't distinguish clipped and unclipped hatchery fish
   df_by_sp_ls_HOR <- df_abund %>%
-    mutate(Production = str_remove(Production, c(" Intact Adipose| Adipose Clip"))) %>%
-    group_by(Species, LifeStage, Production) %>%
-    replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
-    summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
-    mutate(PercESUtake = (ExpTake/abundance)*100) %>%
-    mutate(PercESUkill = (TotalMorts/abundance)*100) %>%
-    filter(!Production == "Natural")
+    dplyr::mutate(Production = stringr::str_remove(Production, c(" Intact Adipose| Adipose Clip"))) %>%
+    dplyr::group_by(Species, LifeStage, Production) %>%
+    tidyr::replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
+    dplyr::summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
+    dplyr::mutate(PercESUtake = (ExpTake/abundance)*100) %>%
+    dplyr::mutate(PercESUkill = (TotalMorts/abundance)*100) %>%
+    dplyr::filter(!Production == "Natural")
 
   df_HOR_list <- unique(abund[abund$Production == "Listed Hatchery", "Species"])
 
   df_HOR <- df %>%
-    filter(Species %in% unlist(df_HOR_list)) %>%
-    filter(LifeStage == "Adult") %>%
-    filter(!Production == "Natural") %>%
-    left_join(select(df_by_sp_ls_HOR, c(Species, LifeStage, abundance, PercESUtake, PercESUkill)),
+    dplyr::filter(Species %in% unlist(df_HOR_list)) %>%
+    dplyr::filter(LifeStage == "Adult") %>%
+    dplyr::filter(!Production == "Natural") %>%
+    dplyr::left_join(select(df_by_sp_ls_HOR, c(Species, LifeStage, abundance, PercESUtake, PercESUkill)),
               by = c("Species", "LifeStage"))
 
 
   #Calculate take sums as perc of ESU/DPS when you have all component information
   #For salmonid juveniles and most salmonid adults, green sturgeon juvs, subadults, and adults
   df_by_all <- df_abund %>%
-    group_by(Species, LifeStage, Production) %>%
-    replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
-    summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
-    mutate(PercESUtake = (ExpTake/abundance)*100) %>%
-    mutate(PercESUkill = (TotalMorts/abundance)*100) %>%
-    filter(!abundance == 0)
+    dplyr::group_by(Species, LifeStage, Production) %>%
+    tidyr::replace_na(list(ExpTake = 0, TotalMorts = 0, abundance = 0)) %>%
+    dplyr::summarise(ExpTake = sum(ExpTake), TotalMorts = sum(TotalMorts), abundance = sum(abundance)) %>%
+    dplyr::mutate(PercESUtake = (ExpTake/abundance)*100) %>%
+    dplyr::mutate(PercESUkill = (TotalMorts/abundance)*100) %>%
+    dplyr::filter(!abundance == 0)
   #filter(!ExpTake == 0)
 
   df_sturg <- df %>%
-    filter(Species == "Southern DPS green sturgeon") %>%
-    left_join(select(df_by_all, c(Species, LifeStage, Production, abundance, PercESUtake, PercESUkill)),
+    dplyr::filter(Species == "Southern DPS green sturgeon") %>%
+    dplyr::left_join(select(df_by_all, c(Species, LifeStage, Production, abundance, PercESUtake, PercESUkill)),
               by = c("Species", "LifeStage", "Production"))
 
 
   df_NOR <- df %>%
-    filter(LifeStage == "Adult" & Production == "Natural") %>%
-    filter(!Species %in% c("Southern DPS green sturgeon",
+    dplyr::filter(LifeStage == "Adult" & Production == "Natural") %>%
+    dplyr::filter(!Species %in% c("Southern DPS green sturgeon",
                            "Puget Sound/Georgia Basin DPS bocaccio",
                            "Puget Sound/Georgia Basin DPS yelloweye rockfish",
                            "Southern DPS eulachon")) %>%
-    left_join(select(df_by_all, c(Species, LifeStage, Production, abundance, PercESUtake, PercESUkill)),
+    dplyr::left_join(select(df_by_all, c(Species, LifeStage, Production, abundance, PercESUtake, PercESUkill)),
               by = c("Species", "LifeStage", "Production")) %>%
-    filter(!abundance == 0)
+    dplyr::filter(!abundance == 0)
 
   df_juvs <- df %>%
-    filter(LifeStage == "Juvenile") %>%
-    filter(!Species %in% c("Southern DPS green sturgeon",
+    dplyr::filter(LifeStage == "Juvenile") %>%
+    dplyr::filter(!Species %in% c("Southern DPS green sturgeon",
                            "Puget Sound/Georgia Basin DPS bocaccio",
                            "Puget Sound/Georgia Basin DPS yelloweye rockfish",
                            "Southern DPS eulachon")) %>%
-    left_join(select(df_by_all, c(Species, LifeStage, Production, abundance, PercESUtake, PercESUkill)),
+    dplyr::left_join(select(df_by_all, c(Species, LifeStage, Production, abundance, PercESUtake, PercESUkill)),
               by = c("Species", "LifeStage", "Production"))
 
   perc_ESU_DPS_table <- bind_rows(df_ls, df_sp, df_HOR, df_NOR, df_sturg, df_juvs) %>%
-    relocate(LifeStage, .after = Species) %>%
-    select(!abundance) %>%
-    mutate(PercESUtake = case_when(
+    dplyr::relocate(LifeStage, .after = Species) %>%
+    dplyr::select(!abundance) %>%
+    dplyr::mutate(PercESUtake = dplyr::case_when(
       PercESUtake == 0 | PercESUtake >=0.001 ~ scales::number(PercESUtake, big.mark = "", accuracy = .001),
       PercESUtake >0 & PercESUtake <0.001 ~ scales::number(PercESUtake, big.mark = "", accuracy = .0001))) %>%
-    mutate(PercESUtake = as.character(PercESUtake)) %>%
-    mutate(PercESUtake = str_replace_all(PercESUtake, c(
+    dplyr::mutate(PercESUtake = as.character(PercESUtake)) %>%
+    dplyr::mutate(PercESUtake = stringr::str_replace_all(PercESUtake, c(
       "0.0000" = "<0.001",
       "0.0001" = "<0.001",
       "0.0002" = "<0.001",
@@ -127,11 +127,11 @@ perc_ESU_DPS <- function(df, abund){
       "0.0007" = "<0.001",
       "0.0008" = "<0.001",
       "0.0009" = "<0.001"))) %>%
-    mutate(PercESUkill = case_when(
+    dplyr::mutate(PercESUkill = dplyr::case_when(
       PercESUkill == 0 | PercESUkill >=0.001 ~ scales::number(PercESUkill, big.mark = "", accuracy = .001),
       PercESUkill >0 & PercESUkill <0.001 ~ scales::number(PercESUkill, big.mark = "", accuracy = .0001))) %>%
-    mutate(PercESUkill = as.character(PercESUkill)) %>%
-    mutate(PercESUkill = str_replace_all(PercESUkill, c(
+    dplyr::mutate(PercESUkill = as.character(PercESUkill)) %>%
+    dplyr::mutate(PercESUkill = stringr::str_replace_all(PercESUkill, c(
       "0.0000" = "<0.001",
       "0.0001" = "<0.001",
       "0.0002" = "<0.001",

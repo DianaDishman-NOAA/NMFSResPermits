@@ -14,17 +14,17 @@
 # ***** the ifelse statement makes it so that changes to Adults are only done on salmonids
 consolidate_lifestage <- function(df){
   df <- df %>%
-    mutate(LifeStage = recode(LifeStage,
+    dplyr::mutate(LifeStage = dplyr::recode(LifeStage,
                               "Smolt" = "Juvenile",
                               "Fry" = "Juvenile",
                               "Yearling" = "Juvenile",
                               "Sub-Yearling" = "Juvenile",
                               "Parr" = "Juvenile")) %>%
-    mutate(LifeStage = ifelse(grepl(c("salmon|steelhead"), Species),
-                              recode(LifeStage,
+    dplyr::mutate(LifeStage = ifelse(grepl(c("salmon|steelhead"), Species),
+                              dplyr::recode(LifeStage,
                                      "Subadult" = "Adult",
                                      "Jack" = "Adult"),
                               LifeStage)) %>%
-    filter(!(grepl(c("salmon|steelhead"), Species)==TRUE & LifeStage == "Egg"))
+    dplyr::filter(!(grepl(c("salmon|steelhead"), Species)==TRUE & LifeStage == "Egg"))
   return(df)
 }
