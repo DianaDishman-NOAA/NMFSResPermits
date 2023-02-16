@@ -11,5 +11,5 @@
 
 
 get_root_filenum <- function(file_list){
-  return(unique(str_extract(file_list, "[^- | //s]+")))
+  return(unique(stringr::str_extract(file_list, "[^- | //s]+")))
 }

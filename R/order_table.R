@@ -12,9 +12,9 @@
 # ** Species order: actually order a tibble by how we want species to appear in tables
 order_table <- function(df){
   df <- df %>%
-    mutate(Species = factor(Species, sp.order)) %>%
-    mutate(LifeStage = factor(LifeStage, ls.order)) %>%
-    mutate(Production = factor(Production, pr.order)) %>%
-    arrange(Species, LifeStage, Production)
+    dplyr::mutate(Species = factor(Species, sp.order)) %>%
+    dplyr::mutate(LifeStage = factor(LifeStage, ls.order)) %>%
+    dplyr::mutate(Production = factor(Production, pr.order)) %>%
+    dplyr::arrange(Species, LifeStage, Production)
   return(df)
 }
