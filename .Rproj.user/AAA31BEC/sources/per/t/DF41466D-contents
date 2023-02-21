@@ -22,7 +22,7 @@ You should only be using this package if you first know what APPS data are all a
 
 ### Contributors
 
-This package is derived from a set of functioned originally developed in collaboration with Ericka Howard
+This package is derived from a set of functions originally developed in collaboration with Ericka Howard
 (https://github.com/ericka-howard;
 https://ericka-howard.github.io)
 
